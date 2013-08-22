@@ -113,7 +113,7 @@ download_and_run() {
 
 check_version() {
     case $1 in
-        3.5.0|3.6.0|3.6.1|3.6.2|4.0.0|4.1.0|4.2.0|4.2.1);;
+        3.5.0|3.6.0|3.6.1|3.6.2|4.0.0|4.1.0|4.2.0|4.2.1|4.4.0);;
         *)
             echo "Sorry, $1 is not supported or not valid version."
             exit 1
