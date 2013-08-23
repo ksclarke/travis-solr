@@ -96,17 +96,28 @@ download_and_run() {
             echo "Copied $file into solr conf directory."
         fi
     done
-    
+
+    # create a lib dir from which our classloader can load custom classes
+    if [ "$1" == "4.2.0" ]
+    then
+	    mkdir -p $dir_name/example/solr/collection1/lib
+    else
+        mkdir -p $dir_name/example/solr/lib
+    fi
+
     # copies custom jars into a dir that the classloader sees
-	mkdir -p $dir_name/example/solr/lib
     for file in $SOLR_JARS
     do
         if [ -f $file ]
         then
-            cp $file $dir_name/example/solr/lib
-            echo "Copied $file into solr lib directory."
-		else
-			echo "$file not recognized as a file: `ls $file`" 
+        	if [ "$1" == "4.2.0" ]
+        	then
+        		cp $file $dir_name/example/solr/collection1/lib
+                echo "Copied $file into solr lib directory."
+            else
+            	cp $file $dir_name/example/solr/lib
+            	echo "Copied $file into solr lib directory."
+            fi
         fi
     done
 
