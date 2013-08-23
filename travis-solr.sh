@@ -105,6 +105,8 @@ download_and_run() {
         then
             cp $file $dir_name/example/solr/lib
             echo "Copied $file into solr lib directory."
+		else
+			echo "$file not recognized as a file: `ls $file`" 
         fi
     done
 
