@@ -96,6 +96,16 @@ download_and_run() {
             echo "Copied $file into solr conf directory."
         fi
     done
+    
+    # copies custom jars
+    for file in $SOLR_JARS
+    do
+        if [ -f $file ]
+        then
+            cp $file $dir_name/example/lib
+            echo "Copied $file into solr lib directory."
+        fi
+    done
 
     # Run solr
     run $dir_name
