@@ -97,12 +97,13 @@ download_and_run() {
         fi
     done
     
-    # copies custom jars
+    # copies custom jars into a dir that the classloader sees
+	mkdir -p $dir_name/example/solr/lib
     for file in $SOLR_JARS
     do
         if [ -f $file ]
         then
-            cp $file $dir_name/example/lib
+            cp $file $dir_name/example/solr/lib
             echo "Copied $file into solr lib directory."
         fi
     done
