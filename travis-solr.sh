@@ -108,9 +108,9 @@ download_and_run() {
     done
 
     # create a lib dir from which our classloader can load custom classes
-    if [ "$1" == "4.2.0" ]
+    if [ "$1" == "4.2.0" ] || [ "$1" == "4.2.1" ]
     then
-	    mkdir -p $dir_name/example/solr/collection1/lib
+        mkdir -p $dir_name/example/solr/collection1/lib
     else
         mkdir -p $dir_name/example/solr/lib
     fi
@@ -120,13 +120,13 @@ download_and_run() {
     do
         if [ -f $file ]
         then
-        	if [ "$1" == "4.2.0" ]
-        	then
-        		cp $file $dir_name/example/solr/collection1/lib
+            if [ "$1" == "4.2.0" ] || [ "$1" == "4.2.1" ]
+            then
+                cp $file $dir_name/example/solr/collection1/lib
                 echo "Copied $file into solr lib directory."
             else
-            	cp $file $dir_name/example/solr/lib
-            	echo "Copied $file into solr lib directory."
+                cp $file $dir_name/example/solr/lib
+                echo "Copied $file into solr lib directory."
             fi
         fi
     done
