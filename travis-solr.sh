@@ -42,46 +42,55 @@ download_and_run() {
             url="http://archive.apache.org/dist/lucene/solr/3.6.1/apache-solr-3.6.1.tgz"
             dir_name="apache-solr-3.6.1"
             dir_conf="conf/"
+            dir_lib="lib/"
             ;;
         3.6.2)
             url="http://archive.apache.org/dist/lucene/solr/3.6.2/apache-solr-3.6.2.tgz"
             dir_name="apache-solr-3.6.2"
             dir_conf="conf/"
+            dir_lib="lib/"
             ;;
         4.0.0)
             url="http://archive.apache.org/dist/lucene/solr/4.0.0/apache-solr-4.0.0.tgz"
             dir_name="apache-solr-4.0.0"
             dir_conf="collection1/conf/"
+            dir_lib="collection1/lib/"
             ;;
         4.1.0)
             url="http://archive.apache.org/dist/lucene/solr/4.1.0/solr-4.1.0.tgz"
             dir_name="solr-4.1.0"
             dir_conf="collection1/conf/"
+            dir_lib="collection1/lib/"
             ;;
         4.2.0)
             url="http://archive.apache.org/dist/lucene/solr/4.2.0/solr-4.2.0.tgz"
             dir_name="solr-4.2.0"
             dir_conf="collection1/conf/"
+            dir_lib="collection1/lib/"
             ;;
         4.2.1)
             url="http://archive.apache.org/dist/lucene/solr/4.2.1/solr-4.2.1.tgz"
             dir_name="solr-4.2.1"
             dir_conf="collection1/conf/"
+            dir_lib="collection1/lib/"
             ;;
         4.3.0)
             url="http://archive.apache.org/dist/lucene/solr/4.3.0/solr-4.3.0.tgz"
             dir_name="solr-4.3.0"
             dir_conf="collection1/conf/"
+            dir_lib="lib/"
             ;;
         4.3.1)
             url="http://archive.apache.org/dist/lucene/solr/4.3.1/solr-4.3.1.tgz"
             dir_name="solr-4.3.1"
             dir_conf="collection1/conf/"
+            dir_lib="lib/"
             ;;
         4.4.0)
             url="http://archive.apache.org/dist/lucene/solr/4.4.0/solr-4.4.0.tgz"
             dir_name="solr-4.4.0"
             dir_conf="collection1/conf/"
+            dir_lib="lib/"
             ;;
     esac
 
@@ -97,27 +106,14 @@ download_and_run() {
         fi
     done
 
-    # create a lib dir from which our classloader can load custom classes
-    if [ "$1" == "4.0.0" ] || [ "$1" == "4.1.0" ] || [ "$1" == "4.2.0" ] || [ "$1" == "4.2.1" ]
-    then
-        mkdir -p $dir_name/example/solr/collection1/lib
-    else
-        mkdir -p $dir_name/example/solr/lib
-    fi
-
-    # copies custom jars into a dir that the classloader sees
-    for file in $SOLR_JARS
+    # copies custom jars into a directory that the ClassLoader sees
+    for file in $SOLR_LIBS
     do
         if [ -f $file ]
         then
-            if [ "$1" == "4.0.0" ] || [ "$1" == "4.1.0" ] || [ "$1" == "4.2.0" ] || [ "$1" == "4.2.1" ]
-            then
-                cp $file $dir_name/example/solr/collection1/lib
-                echo "Copied $file into solr lib directory."
-            else
-                cp $file $dir_name/example/solr/lib
-                echo "Copied $file into solr lib directory."
-            fi
+            mkdir -p $dir_name/example/solr/$dir_lib
+            cp $file $dir_name/example/solr/$dir_lib
+            echo "Copied $file into solr lib directory: $dir_lib"
         fi
     done
 
