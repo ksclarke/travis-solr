@@ -38,16 +38,6 @@ post_some_documents() {
 
 download_and_run() {
     case $1 in
-        3.5.0)
-            url="http://archive.apache.org/dist/lucene/solr/3.5.0/apache-solr-3.5.0.tgz"
-            dir_name="apache-solr-3.5.0"
-            dir_conf="conf/"
-            ;;
-        3.6.0)
-            url="http://archive.apache.org/dist/lucene/solr/3.6.0/apache-solr-3.6.0.tgz"
-            dir_name="apache-solr-3.6.0"
-            dir_conf="conf/"
-            ;;
         3.6.1)
             url="http://archive.apache.org/dist/lucene/solr/3.6.1/apache-solr-3.6.1.tgz"
             dir_name="apache-solr-3.6.1"
@@ -108,7 +98,7 @@ download_and_run() {
     done
 
     # create a lib dir from which our classloader can load custom classes
-    if [ "$1" == "4.2.0" ] || [ "$1" == "4.2.1" ]
+    if [ "$1" == "4.0.0" ] || [ "$1" == "4.1.0" ] || [ "$1" == "4.2.0" ] || [ "$1" == "4.2.1" ]
     then
         mkdir -p $dir_name/example/solr/collection1/lib
     else
@@ -120,7 +110,7 @@ download_and_run() {
     do
         if [ -f $file ]
         then
-            if [ "$1" == "4.2.0" ] || [ "$1" == "4.2.1" ]
+            if [ "$1" == "4.0.0" ] || [ "$1" == "4.1.0" ] || [ "$1" == "4.2.0" ] || [ "$1" == "4.2.1" ]
             then
                 cp $file $dir_name/example/solr/collection1/lib
                 echo "Copied $file into solr lib directory."
@@ -147,7 +137,7 @@ download_and_run() {
 
 check_version() {
     case $1 in
-        3.5.0|3.6.0|3.6.1|3.6.2|4.0.0|4.1.0|4.2.0|4.2.1|4.3.0|4.3.1|4.4.0);;
+        3.6.1|3.6.2|4.0.0|4.1.0|4.2.0|4.2.1|4.3.0|4.3.1|4.4.0);;
         *)
             echo "Sorry, $1 is not supported or not valid version."
             exit 1
