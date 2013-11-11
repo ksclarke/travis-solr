@@ -9,7 +9,7 @@ Usage
 
 ::
 
-  curl https://raw.github.com/moliware/travis-solr/master/travis-solr.sh | SOLR_VERSION=3.6.1 SOLR_CONFS=schema.xml solrconfig.xml SOLR_DOCS=custom_docs.json bash
+  curl https://raw.github.com/ksclarke/travis-solr/master/travis-solr.sh | SOLR_VERSION=3.6.1 SOLR_CONFS=schema.xml solrconfig.xml SOLR_DOCS=custom_docs.json bash
 
 SOLR_VERSION:
 .............
