@@ -35,7 +35,6 @@ post_some_documents() {
     java -Dtype=application/json -Durl=http://localhost:8983/solr/update/json -jar $1/example/exampledocs/post.jar $2
 }
 
-
 download_and_run() {
     case $1 in
         3.6.1)
@@ -158,7 +157,6 @@ check_version() {
             ;;
     esac
 }
-
 
 check_version $SOLR_VERSION
 download_and_run $SOLR_VERSION
