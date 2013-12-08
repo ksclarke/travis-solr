@@ -103,6 +103,7 @@ download_and_run() {
             dir_name="solr-4.5.1"
             dir_conf="collection1/conf/"
             dir_lib="lib/"
+            ;;
         4.6.0)
             url="http://archive.apache.org/dist/lucene/solr/4.6.0/solr-4.6.0.tgz"
             dir_name="solr-4.6.0"
