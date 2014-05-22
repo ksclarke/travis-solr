@@ -9,7 +9,7 @@ Usage
 
 ::
 
-  curl https://raw.github.com/ksclarke/travis-solr/master/travis-solr.sh | SOLR_VERSION=3.6.1 SOLR_CONFS=schema.xml solrconfig.xml SOLR_DOCS=custom_docs.json bash
+  curl https://raw.github.com/ksclarke/travis-solr/master/travis-solr.sh | SOLR_VERSION=3.6.1 SOLR_CONFS="schema.xml solrconfig.xml" SOLR_DOCS=custom_docs.json bash
 
 SOLR_VERSION:
 .............
@@ -40,14 +40,21 @@ SOLR_CONFS:
 If you need to use some custom configuration you can specify one or more files 
 in this variable and the script will copy it in the solr conf folder.
 
+Be sure to surround multiple values with quotes.
+
 Don't use it if you need the default solr settings.
 
 SOLR_DOCS:
 ..........
 
-By default the script will index exampledocs/books.json documents. You can point
-this variable to a json file that contains your custom documents.
+By default the script will not index any documents. You can point
+this variable to a json file that contains your custom documents for indexing.
 
+SOLR_PORT:
+..........
+
+If you want your Solr instance to run on a different TCP port, define this variable;
+Solr will run on the default port 8983 if left blank.
 
 Travis-ci
 ---------
